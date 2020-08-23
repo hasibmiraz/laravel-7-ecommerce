@@ -1,7 +1,7 @@
 @extends('layouts.app-admin')
 
 @section('title')
-    Create Category
+    Edit Category
 @endsection
 
 @section('content')
@@ -19,14 +19,14 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Create Category</h4>
-            {!! Form::open(['route' => 'category.store', 'class' => 'cmxform', 'method' => 'POST', 'id' => 'commentForm']) !!}
+          <h4 class="card-title">Edit Category</h4>
+            {!! Form::open(['route' => ['category.update', $category->id], 'class' => 'cmxform', 'method' => 'POST', 'id' => 'commentForm']) !!}
               @csrf
               <div class="form-group">
                 {{ Form::label('', 'Product Category', ['for' => 'category_name']) }}
-                {{ Form::text('category_name', old('category_name'), ['class' => 'form-control', 'minlength' => '2', 'id' => 'cname']) }}
+                {{ Form::text('category_name', $category->category_name, ['class' => 'form-control', 'minlength' => '3', 'id' => 'cname']) }}
               </div>
-              {{ Form::submit('Add Category', ['class' => 'btn btn-primary']) }}
+              {{ Form::submit('Update Category', ['class' => 'btn btn-primary']) }}
             {!! Form::close() !!}
         </div>
       </div>

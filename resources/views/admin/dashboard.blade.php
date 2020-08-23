@@ -247,7 +247,7 @@
     </div>
 @endsection
 
-@section('scripts')    
+@section('scripts') 
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
 @endsection
 

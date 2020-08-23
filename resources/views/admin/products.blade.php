@@ -6,6 +6,15 @@
 
 @section('content')
 
+@if (session()->has('status'))
+  <div class="alert alert-success alert-dismissible fade show text-white" role="alert">
+    <p>{{ session()->get('status') }}</p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>            
+  </div>
+@endif
+
 <div class="card">
     <div class="card-body">
       <h4 class="card-title">Products</h4>
