@@ -23,3 +23,8 @@ Route::get('/cart', 'ClientController@cart')->name('cart');
 Route::get('/checkout', 'ClientController@checkout')->name('checkout');
 Route::get('/login', 'ClientController@login')->name('login');
 Route::get('/signup', 'ClientController@signup')->name('signup');
+
+Route::get('/admin', 'AdminController@dashboard')->name('admin.dashboard');
+Route::get('/addcategory', 'AdminController@addcategory')->name('category.create');
+Route::get('/addproduct', 'AdminController@addproduct')->name('product.create');
+Route::get('/addslider', 'AdminController@addslider')->name('slider.create');
