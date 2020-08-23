@@ -15,12 +15,12 @@
 
               <div class="form-group">
                 {{ Form::label('', 'Description One', ['for' => 'description_one']) }}
-                {{ Form::text('description_one', old('description_one'), ['class' => 'form-control']) }}
+                {{ Form::text('description_one', old('description_one'), ['class' => 'form-control', 'minlength' => '2']) }}
               </div>
 
               <div class="form-group">
                 {{ Form::label('', 'Description Two', ['for' => 'description_two']) }}
-                {{ Form::text('description_two', old('description_two'), ['class' => 'form-control']) }}
+                {{ Form::text('description_two', old('description_two'), ['class' => 'form-control', 'minlength' => '2']) }}
               </div>
 
               <div class="form-group">
@@ -40,4 +40,10 @@
     </div>
   </div>
 
+  @endsection
+
+  
+  @section('scripts')
+    <script src="{{ asset('backend/js/form-validation.js') }}"></script>
+    <script src="{{ asset('backend/js/bt-maxLength.js') }}"></script>
   @endsection

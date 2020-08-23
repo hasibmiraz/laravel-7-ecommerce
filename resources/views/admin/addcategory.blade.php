@@ -24,3 +24,8 @@
   </div>
 
   @endsection
+
+  @section('scripts')
+    <script src="{{ asset('backend/js/form-validation.js') }}"></script>
+    <script src="{{ asset('backend/js/bt-maxLength.js') }}"></script>
+  @endsection

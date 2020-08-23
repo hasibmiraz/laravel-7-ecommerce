@@ -25,6 +25,14 @@ Route::get('/login', 'ClientController@login')->name('login');
 Route::get('/signup', 'ClientController@signup')->name('signup');
 
 Route::get('/admin', 'AdminController@dashboard')->name('admin.dashboard');
+
+Route::get('/orders', 'AdminController@orders')->name('orders.show');
+
+Route::get('/addproduct', 'ProductController@addproduct')->name('product.create');
+Route::get('/products', 'ProductController@products')->name('products.show');
+
 Route::get('/addcategory', 'AdminController@addcategory')->name('category.create');
-Route::get('/addproduct', 'AdminController@addproduct')->name('product.create');
-Route::get('/addslider', 'AdminController@addslider')->name('slider.create');
+Route::get('/categories', 'AdminController@categories')->name('categories.show');
+
+Route::get('/sliders', 'SliderController@sliders')->name('sliders.show');
+Route::get('/addslider', 'SliderController@addslider')->name('slider.create');

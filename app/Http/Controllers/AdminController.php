@@ -16,13 +16,13 @@ class AdminController extends Controller
         return view('admin.addcategory');
     }
 
-    public function addproduct()
+    public function categories()
     {
-        return view('admin.addproduct');
+        return view('admin.categories');
     }
 
-    public function addslider()
+    public function orders()
     {
-        return view('admin.addslider');
+        return view('admin.orders');
     }
 }

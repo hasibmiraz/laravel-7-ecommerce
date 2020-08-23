@@ -20,7 +20,7 @@
 
               <div class="form-group">
                 {{ Form::label('', 'Product Price', ['for' => 'product_price']) }}
-                {{ Form::number('product_price', old('product_price'), ['class' => 'form-control', 'id' => 'cname']) }}
+                {{ Form::number('product_price', old('product_price'), ['class' => 'form-control', 'id' => 'cname', 'minlength' => '2']) }}
               </div>
 
               <div class="form-group">
@@ -45,4 +45,10 @@
     </div>
   </div>
 
+  @endsection
+
+  
+  @section('scripts')
+    <script src="{{ asset('backend/js/form-validation.js') }}"></script>
+    <script src="{{ asset('backend/js/bt-maxLength.js') }}"></script>
   @endsection
