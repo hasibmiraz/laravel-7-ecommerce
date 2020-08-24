@@ -10,7 +10,8 @@ class ProductController extends Controller
 {
     public function products()
     {
-        return view('admin.products');
+        $products = Product::orderBy('id', 'desc')->get();
+        return view('admin.products', compact('products'));
     }    
 
     public function addproduct()
@@ -25,7 +26,7 @@ class ProductController extends Controller
             $validate = $request->validate([
                 'product_name' => 'required|min:6',
                 'product_price' => 'required',
-                'product_image' => 'image|nullable|max:2024',
+                'product_image' => 'required|max:2024',
             ]);
     
             if($request->hasFile('product_image')) {
@@ -56,5 +57,12 @@ class ProductController extends Controller
         }
 
 
+    }
+
+    public function editproduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::orderBy('category_name', 'asc')->pluck('category_name', 'category_name');
+        return view('admin.editproduct', compact('product', 'categories'));
     }
 }

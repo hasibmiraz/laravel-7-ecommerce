@@ -24,157 +24,46 @@
             <table id="order-listing" class="table">
               <thead>
                 <tr>
-                    <th>Order #</th>
-                    <th>Purchased On</th>
-                    <th>Customer</th>
-                    <th>Ship to</th>
-                    <th>Base Price</th>
-                    <th>Purchased Price</th>
+                    <th>Order</th>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Product Category</th>
                     <th>Status</th>
                     <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2012/08/03</td>
-                    <td>Edinburgh</td>
-                    <td>New York</td>
-                    <td>$1500</td>
-                    <td>$3200</td>
-                    <td>
-                      <label class="badge badge-info">On hold</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2015/04/01</td>
-                    <td>Doe</td>
-                    <td>Brazil</td>
-                    <td>$4500</td>
-                    <td>$7500</td>
-                    <td>
-                      <label class="badge badge-danger">Pending</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>2010/11/21</td>
-                    <td>Sam</td>
-                    <td>Tokyo</td>
-                    <td>$2100</td>
-                    <td>$6300</td>
-                    <td>
-                      <label class="badge badge-success">Closed</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>2016/01/12</td>
-                    <td>Sam</td>
-                    <td>Tokyo</td>
-                    <td>$2100</td>
-                    <td>$6300</td>
-                    <td>
-                      <label class="badge badge-success">Closed</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>2017/12/28</td>
-                    <td>Sam</td>
-                    <td>Tokyo</td>
-                    <td>$2100</td>
-                    <td>$6300</td>
-                    <td>
-                      <label class="badge badge-success">Closed</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>2000/10/30</td>
-                    <td>Sam</td>
-                    <td>Tokyo</td>
-                    <td>$2100</td>
-                    <td>$6300</td>
-                    <td>
-                      <label class="badge badge-info">On-hold</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>2011/03/11</td>
-                    <td>Cris</td>
-                    <td>Tokyo</td>
-                    <td>$2100</td>
-                    <td>$6300</td>
-                    <td>
-                      <label class="badge badge-success">Closed</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>2015/06/25</td>
-                    <td>Tim</td>
-                    <td>Italy</td>
-                    <td>$6300</td>
-                    <td>$2100</td>
-                    <td>
-                      <label class="badge badge-info">On-hold</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>2016/11/12</td>
-                    <td>John</td>
-                    <td>Tokyo</td>
-                    <td>$2100</td>
-                    <td>$6300</td>
-                    <td>
-                      <label class="badge badge-success">Closed</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>2003/12/26</td>
-                    <td>Tom</td>
-                    <td>Germany</td>
-                    <td>$1100</td>
-                    <td>$2300</td>
-                    <td>
-                      <label class="badge badge-danger">Pending</label>
-                    </td>
-                    <td>
-                      <button class="btn btn-outline-primary">View</button>
-                    </td>
-                </tr>
+                @php $i = 1; @endphp
+                @foreach ($products as $product)
+                  <tr>
+                      <td>{{ $i }}</td>
+                      <td><img src="/storage/product_images/{{ $product->product_image }}" alt=""></td>
+                      <td>{{ $product->product_name }}</td>
+                      <td>{{ $product->product_price }}</td>
+                      <td>{{ $product->product_category }}</td>
+                      <td>
+                        @if ($product->status === 1)
+                          <label class="badge badge-success">Activated</label>
+                        @else
+                          <label class="badge badge-danger">Deactivated</label>
+                        @endif
+                      </td>
+                      <td>
+                        <a href="{{ route('product.edit', ['id' => $product->id]) }}"><button class="btn btn-outline-primary">Edit</button></a>
+                      
+                        <a href="#" class="btn btn-outline-danger" id="delete">Delete</a>
+
+                        @if ($product->status === 1)
+                          <a href="#" class="btn btn-outline-warning" id="delete">Deactivate</a>                            
+                        @else
+                          <a href="#" class="btn btn-outline-success" id="delete">Activate</a>  
+                        @endif
+
+                      </td>
+                  </tr>                    
+                  @php $i++; @endphp
+                @endforeach
               </tbody>
             </table>
           </div>
