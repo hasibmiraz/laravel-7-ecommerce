@@ -8,7 +8,7 @@
 
 @if (session()->has('status'))
   <div class="alert alert-success alert-dismissible fade show text-white" role="alert">
-    <p>{{ session()->get('status') }}</p>
+    <span>{{ session()->get('status') }}</span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>            

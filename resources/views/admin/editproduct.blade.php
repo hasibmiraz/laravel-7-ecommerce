@@ -21,7 +21,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Edit Product</h4>
-            {!! Form::open(['class' => 'cmxform', 'method' => 'POST', 'id' => 'commentForm', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => ['product.update', 'id' => $product->id], 'class' => 'cmxform', 'method' => 'POST', 'id' => 'commentForm', 'enctype' => 'multipart/form-data']) !!}
               @csrf
 
               <div class="form-group">

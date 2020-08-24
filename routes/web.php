@@ -32,6 +32,7 @@ Route::get('/products', 'ProductController@products')->name('products.show');
 Route::get('/addproduct', 'ProductController@addproduct')->name('product.create');
 Route::post('/saveproduct', 'ProductController@saveproduct')->name('product.store');
 Route::get('/product/edit/{id}', 'ProductController@editproduct')->name('product.edit');
+Route::post('/product/update/{id}', 'ProductController@updateproduct')->name('product.update');
 
 Route::get('/categories', 'CategoryController@categories')->name('categories.show');
 Route::get('/addcategory', 'CategoryController@addcategory')->name('category.create');
