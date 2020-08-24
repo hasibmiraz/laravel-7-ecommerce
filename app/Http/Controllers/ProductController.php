@@ -25,7 +25,7 @@ class ProductController extends Controller
     {
         if($request->product_category) {
             $validate = $request->validate([
-                'product_name' => 'required|min:6',
+                'product_name' => 'required|min:3',
                 'product_price' => 'required',
                 'product_image' => 'required|max:2024',
             ]);
@@ -46,7 +46,7 @@ class ProductController extends Controller
             $product->product_price = $request->product_price;
             $product->product_category = $request->product_category;
             $product->product_image = $fileNameToStore;
-            $product->status = 1;
+            $product->status = 0;
     
             $product->save();
     
@@ -96,9 +96,7 @@ class ProductController extends Controller
                 }
 
                 $product->product_image = $fileNameToStore;
-            }    
-            
-            $product->status = 1;
+            }
     
             $product->update();
     
@@ -109,4 +107,35 @@ class ProductController extends Controller
             return redirect()->route('product.edit');
         }
     }
+
+    public function deleteproduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        if ($product->product_image !== 'noimage.jpg') {
+            Storage::delete('public/product_images/'.$product->product_image);
+        }
+
+        $product->delete();
+
+        $request->session()->flash('status', 'Product was deleted successfully!');
+        return redirect()->route('products.show');
+    }
+
+    public function activateproduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        if($product->status === 1) {
+            $product->status = 0;
+            $product->update();
+            $request->session()->flash('status', 'Product was deactivated successfully!');
+        } elseif($product->status === 0) {
+            $product->status = 1;
+            $product->update();
+            $request->session()->flash('status', 'Product was activated successfully!');
+        }
+        return redirect()->route('products.show');
+    }
+
 }

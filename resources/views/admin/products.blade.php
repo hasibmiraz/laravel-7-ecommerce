@@ -52,12 +52,12 @@
                       <td>
                         <a href="{{ route('product.edit', ['id' => $product->id]) }}"><button class="btn btn-outline-primary">Edit</button></a>
                       
-                        <a href="#" class="btn btn-outline-danger" id="delete">Delete</a>
+                        <a href="{{ route('product.delete', ['id' => $product->id]) }}" class="btn btn-outline-danger" id="delete">Delete</a>
 
                         @if ($product->status === 1)
-                          <a href="#" class="btn btn-outline-warning" id="delete">Deactivate</a>                            
+                          <a href="{{ route('product.activate', ['id' => $product->id]) }}" class="btn btn-outline-warning">Deactivate</a>                            
                         @else
-                          <a href="#" class="btn btn-outline-success" id="delete">Activate</a>  
+                          <a href="{{ route('product.activate', ['id' => $product->id]) }}" class="btn btn-outline-success">Activate</a>  
                         @endif
 
                       </td>
