@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Create Slider</h4>
-            {!! Form::open(['class' => 'cmxform', 'method' => 'POST', 'id' => 'commentForm', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['route' => 'slider.store', 'class' => 'cmxform', 'method' => 'POST', 'id' => 'commentForm', 'enctype' => 'multipart/form-data']) !!}
               @csrf
 
               <div class="form-group">
@@ -28,12 +28,7 @@
                 {{ Form::file('slider_image', ['class' => 'form-control', 'id' => 'cname']) }}
               </div>
 
-              <div class="form-group">
-                  {{ Form::checkbox('slider_status', '', ['class' => 'form-control']) }}
-                  {{ Form::label('', 'Slider Status', ['for' => 'slider_status', 'class' => 'form-check-label', 'style' => 'margin-top: -4px; margin-left:3px']) }}
-              </div>
-
-              {{ Form::submit('Add Category', ['class' => 'btn btn-primary']) }}
+              {{ Form::submit('Add Slider', ['class' => 'btn btn-primary']) }}
             {!! Form::close() !!}
         </div>
       </div>
@@ -44,6 +39,6 @@
 
   
   @section('scripts')
-    <script src="{{ asset('backend/js/form-validation.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/form-validation.js') }}"></script> --}}
     <script src="{{ asset('backend/js/bt-maxLength.js') }}"></script>
   @endsection

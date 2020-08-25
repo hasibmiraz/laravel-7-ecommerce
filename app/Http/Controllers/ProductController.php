@@ -23,13 +23,13 @@ class ProductController extends Controller
 
     public function saveproduct(Request $request)
     {
+        $validate = $request->validate([
+            'product_name' => 'required|min:3',
+            'product_price' => 'required',
+            'product_image' => 'required|max:2024',
+        ]);
+
         if($request->product_category) {
-            $validate = $request->validate([
-                'product_name' => 'required|min:3',
-                'product_price' => 'required',
-                'product_image' => 'required|max:2024',
-            ]);
-    
             if($request->hasFile('product_image')) {
                 $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
                 $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -56,8 +56,6 @@ class ProductController extends Controller
             $request->session()->flash('status', 'Please select the product category!');
             return redirect()->route('product.create');
         }
-
-
     }
 
     public function editproduct($id)

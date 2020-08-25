@@ -45,3 +45,4 @@ Route::get('/category/delete/{id}', 'CategoryController@deletecategory')->name('
 
 Route::get('/sliders', 'SliderController@sliders')->name('sliders.show');
 Route::get('/addslider', 'SliderController@addslider')->name('slider.create');
+Route::post('/saveslider', 'SliderController@saveslider')->name('slider.store');
