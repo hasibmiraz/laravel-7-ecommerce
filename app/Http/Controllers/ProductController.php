@@ -34,7 +34,7 @@ class ProductController extends Controller
                 $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
                 $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
                 $extention = $request->file('product_image')->getClientOriginalExtension();
-                $fileNameToStore = $fileName . '_' . time() . '_' . $extention;
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extention;
     
                 $path = $request->file('product_image')->storeAs('public/product_images', $fileNameToStore);
             } else {
@@ -67,13 +67,13 @@ class ProductController extends Controller
 
     public function updateproduct(Request $request, $id)
     {
-        if($request->product_category) {
-            $validate = $request->validate([
-                'product_name' => 'required|min:6',
-                'product_price' => 'required',
-                'product_image' => 'max:2024',
-            ]);
+        $validate = $request->validate([
+            'product_name' => 'required|min:6',
+            'product_price' => 'required',
+            'product_image' => 'max:2024',
+        ]);
 
+        if($request->product_category) {
             $product = Product::findOrFail($id);
             $product->product_name = $request->product_name;
             $product->product_price = $request->product_price;
@@ -83,7 +83,7 @@ class ProductController extends Controller
                 $fileNameWithExt = $request->file('product_image')->getClientOriginalName();
                 $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
                 $extention = $request->file('product_image')->getClientOriginalExtension();
-                $fileNameToStore = $fileName . '_' . time() . '_' . $extention;
+                $fileNameToStore = $fileName . '_' . time() . '.' . $extention;
     
                 $path = $request->file('product_image')->storeAs('public/product_images', $fileNameToStore);
 
