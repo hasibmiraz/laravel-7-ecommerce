@@ -25,6 +25,7 @@ Route::get('/login', 'ClientController@login')->name('login');
 Route::get('/signup', 'ClientController@signup')->name('signup');
 Route::post('/updateqty/{id}', 'ClientController@updateqty')->name('update.qty');
 Route::get('/removeitem/{id}', 'ClientController@removeitem')->name('remove.item');
+Route::post('/product/checkout', 'ClientController@postcheckout')->name('product.checkout');
 
 Route::get('/admin', 'AdminController@dashboard')->name('admin.dashboard');
 

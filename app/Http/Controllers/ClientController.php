@@ -62,8 +62,16 @@ class ClientController extends Controller
         return redirect()->route('cart');
     }
 
+    public function postcheckout(Request $request)
+    {
+        
+    }
+
     public function checkout()
     {
+        if(!Session::has('cart')) {
+            return redirect()->route('cart');
+        }
         return view('client.checkout');
     }
 
