@@ -42,6 +42,7 @@ Route::post('/savecategory', 'CategoryController@savecategory')->name('category.
 Route::get('/category/edit/{id}', 'CategoryController@editcategory')->name('category.edit');
 Route::post('/category/update/{id}', 'CategoryController@updatecategory')->name('category.update');
 Route::get('/category/delete/{id}', 'CategoryController@deletecategory')->name('category.delete');
+Route::get('/category/{name}', 'CategoryController@cateview')->name('category.view');
 
 Route::get('/sliders', 'SliderController@sliders')->name('sliders.show');
 Route::get('/addslider', 'SliderController@addslider')->name('slider.create');

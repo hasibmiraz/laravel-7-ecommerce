@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -49,14 +50,20 @@ class CategoryController extends Controller
     {
         $checkCat = Category::where('category_name', $request->category_name)->first();
         $category = Category::findOrFail($id);
+        $oldcat = $category->category_name;
         
         if (!$checkCat) {
             $validate = $request->validate([
                 'category_name' => 'required|min:3|max:10'
-            ]);
-            
+                ]);
+                
             $category->category_name = $request->category_name;
+            $data = [];
+            $data['product_category'] = $request->category_name;
+            $product = Product::where('product_category', $oldcat)
+                            ->update($data);
             $category->update();
+            
             $request->session()->flash('status', 'Category was updated!');
             return redirect()->route('categories.show');
         } else {
@@ -74,5 +81,13 @@ class CategoryController extends Controller
         $request->session()->flash('status', 'Category was deleted!');
 
         return redirect()->route('categories.show');
+    }
+
+    public function cateview($name)
+    {
+        $categories = Category::get();
+        $products = Product::where('product_category', $name)->get();
+
+        return view('client.shop',compact('products', 'categories'));
     }
 }
