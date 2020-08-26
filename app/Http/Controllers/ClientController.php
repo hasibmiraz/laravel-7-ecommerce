@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Slider;
 use Illuminate\Http\Request;
 
@@ -9,8 +10,9 @@ class ClientController extends Controller
 {
     public function home()
     {
+        $products = Product::where('status', '=', '1')->get();
         $sliders = Slider::get();
-        return view('client.home',compact('sliders'));
+        return view('client.home',compact('sliders', 'products'));
     }
 
 
