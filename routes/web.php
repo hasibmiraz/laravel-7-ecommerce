@@ -23,6 +23,8 @@ Route::get('/cart', 'ClientController@cart')->name('cart');
 Route::get('/checkout', 'ClientController@checkout')->name('checkout');
 Route::get('/login', 'ClientController@login')->name('login');
 Route::get('/signup', 'ClientController@signup')->name('signup');
+Route::post('/updateqty/{id}', 'ClientController@updateqty')->name('update.qty');
+Route::get('/removeitem/{id}', 'ClientController@removeitem')->name('remove.item');
 
 Route::get('/admin', 'AdminController@dashboard')->name('admin.dashboard');
 
@@ -35,6 +37,7 @@ Route::get('/product/edit/{id}', 'ProductController@editproduct')->name('product
 Route::post('/product/update/{id}', 'ProductController@updateproduct')->name('product.update');
 Route::get('/product/delete/{id}', 'ProductController@deleteproduct')->name('product.delete');
 Route::get('/product/activate/{id}', 'ProductController@activateproduct')->name('product.activate');
+Route::get('/product/cart/{id}', 'ProductController@addToCart')->name('product.cart');
 
 Route::get('/categories', 'CategoryController@categories')->name('categories.show');
 Route::get('/addcategory', 'CategoryController@addcategory')->name('category.create');

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -134,6 +136,18 @@ class ProductController extends Controller
             $request->session()->flash('status', 'Product was activated successfully!');
         }
         return redirect()->route('products.show');
+    }
+
+    public function addToCart($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $id);
+        Session::put('cart', $cart);
+
+        return redirect()->back();
     }
 
 }
