@@ -1,5 +1,3 @@
-Stripe.setPublishableKey('pk_test_51HKSn8DFGxRHaLyPONFFEXxbDq8c4DRyyq4Afb9HU2zTad8WrzCBdC1xc8JedAqsp5waMJUVRpO5Xxc7xp7o9XsZ00nd4exOAM');
-
 var $form = $('#checkout-form');
 
 $form.submit(function(event){

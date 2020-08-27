@@ -8,6 +8,8 @@ use App\Product;
 use App\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 class ClientController extends Controller
 {
@@ -64,7 +66,30 @@ class ClientController extends Controller
 
     public function postcheckout(Request $request)
     {
-        
+        if(!Session::has('cart')) {
+            return redirect()->route('cart');
+        }
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        Stripe::setApiKey('pk_test_51HKSn8DFGxRHaLyPONFFEXxbDq8c4DRyyq4Afb9HU2zTad8WrzCBdC1xc8JedAqsp5waMJUVRpO5Xxc7xp7o9XsZ00nd4exOAM');
+
+        try{
+            Charge::create(array(
+                "amount" => $cart->totalPrice * 100,
+                "currency" => "usd",
+                "source" => $request->input('stripeToken'), // obtainded with Stripe.js
+                "description" => "Test Charge"
+            ));
+        } catch(\Exception $e) {
+            Session::put('error', $e->getMessage());
+            return redirect()->route('product.checkout');
+        }
+
+        Session::forget('cart');
+        Session::put('success', 'Purchase accomplished successfully!');
+        return redirect()->route('home');
     }
 
     public function checkout()

@@ -23,6 +23,11 @@
           <div class="col-xl-7 ftco-animate">
 			{!! Form::open(['route' => 'product.checkout', 'method' => 'POST', 'class' => 'billing-form', 'id' => 'checkout-form']) !!}
 					<h3 class="mb-4 billing-heading">Billing Details</h3>
+					@if (Session::has('error'))
+						<div class="alert alert-danger">
+							{{ Session::get('error') }}
+						</div>
+					@endif
 	          	<div class="row align-items-end">
 	          		<div class="col-md-12">
 	                <div class="form-group">
@@ -72,7 +77,7 @@
 	                  <input type="text" class="form-control" name="date" id="card-cvc">
 	                </div>
 					</div>
-					<a href="#"class="btn btn-primary">Buy Now</a>
+					<input type="submit" value="Buy Now" class="btn btn-primary">
 				</div>
 				
 				{!! Form::close() !!}<!-- END -->
